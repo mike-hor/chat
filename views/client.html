@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+ <html>
+ <head lang="en">
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+     <meta content="yes" name="apple-mobile-web-app-capable">
+     <meta content="black" name="apple-mobile-web-app-status-bar-style">
+     <meta content="telephone=no" name="format-detection">
+     <link rel="stylesheet" href="stylesheets/communal_one.css">
+     <link rel="stylesheet" href="stylesheets/index.css">
+     <!--<link rel="stylesheet" href="../public/stylesheets/communal_one.css"> -->
+     <title></title>
+     
+      <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+      <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+      <script type="text/javascript" src="javascripts/jquery.qqFace.js"></script>
+      <script type="text/javascript" src="javascripts/swiper.min.js"></script>
+      <!-- 
+     <script type="text/javascript" src="../public/javascripts/jquery.min.js"></script>    
+     <script type="text/javascript" src="http://gamechat.applinzi.com/socket.io/socket.io.js"></script>
+     <script type="text/javascript" src="../public/javascripts/swiper.min.js"></script>  
+ -->
+<style>
+
+</style>
+ </head>
+ <body>
+    <div class="container_chat">
+        <div class="chat_input">
+            <div class="pravite_chat_box letter_from">
+                     <!-- <div id="show"></div>显示结果的div    -->
+                     <div class="comment">
+                        <div class="com_form">
+                            <textarea class="pravite_chat_box_input" id="saytext" name="saytext" placeholder="请输入内容"></textarea>
+                            <p>
+                                <span class="emotion"></span>
+                                <span style="display: none;" class="pravite_picture"></span>
+                                <span class="com_form_send_btn">发送</span>
+                            </p>
+                        </div>
+                     </div> 
+            </div>            
+        </div>
+        <div class="chat_msgbox">
+                 <div class="pravite_chat_box swiper-container" style="height: 200px;overflow: hidden;">
+                    <div class = "swiper-wrapper">
+                         <div id="letter_list" class="pravite_chat_content swiper-slide"> 
+                            <audio src= "" preload="preload"  id="audio"></audio>
+                                    <ul>
+                                        <!-- <li>
+                                        <span class="pravite_chat_content_time">12-16 11:51</span>
+                                        <div class="pravite_chat_content_receive_box" style="">          
+                                            <a href="http://fm.dingxiaoxiao.com/member/?id=1078">
+                                                <img src="http://wx.qlogo.cn/mmopen/Y3WgNLFjO0cetn9sFqQV9goicnprWbe7lphorVCelDF2ricd3F366gPA85lSQibD1iaog0QibNN2b41vmFRrCia0FpFFK8c7hVABO6/0" class="pravite_chat_content_userimg_receive"> 
+                                            </a>
+                                            <div data-tag="1450237884" class="pravite_chat_content_receive chat_box">               
+                                                <p>
+                                                    <img src="http://fm.dingxiaoxiao.com/pub/face/12.gif" border="0">                              
+                                                </p>                
+                                            </div>                          
+                                        </div>
+                                        </li>
+                                        <li>
+                                        <span class="pravite_chat_content_time">12-08 13:47</span>
+                                        <div class="pravite_chat_content_send_box">                       
+                                            <div data-tag="1449553677" class="pravite_chat_content_send chat_box">
+                                                <p>
+                                                    <img src="http://fm.dingxiaoxiao.com/pub/face/30.gif" border="0">                               
+                                                </p>
+                                            </div> 
+                                            <a href="http://fm.dingxiaoxiao.com/member/?id=2">
+                                                <img src="http://wx.qlogo.cn/mmopen/S2X9l9oIYzZfHUm1H2DbWGb6cPx8d7CXf1aBAxpF7V9UL7xlqLAnwSpW5ItuZEDOHlbkJyZbAEObiaTplWlVkiakRVDR7WzFhj/0" class="pravite_chat_content_userimg_send">    
+                                            </a>
+                                        </div>
+                                     </div>
+                                      </li> -->
+                                     </ul>
+                           </div>
+                </div>           
+        </div>
+    </div>
+ </body>
+ <script type="text/javascript" src="javascripts/index.js"></script>
+ </html>

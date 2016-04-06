@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+ <html>
+ <head lang="en">
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+     <meta content="yes" name="apple-mobile-web-app-capable">
+     <meta content="black" name="apple-mobile-web-app-status-bar-style">
+     <meta content="telephone=no" name="format-detection">
+<!--      ../public/ -->
+    <link rel="stylesheet" href="stylesheets/communal_one.css">
+    <link rel="stylesheet" href="stylesheets/admin.css">
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+<!--     <link rel="stylesheet" href="../public/stylesheets/communal_one.css">
+    <link rel="stylesheet" href="../public/stylesheets/admin.css"> 
+    <script type="text/javascript" src="../public/javascripts/jquery.min.js"></script>-->
+
+<style>
+
+</style>
+ </head>
+<body>
+    <div class="container_admin">
+        <ul>
+            <li class="game_word li_current">文字游戏</li>
+            <li class="game_picture" >图片游戏</li>
+            <li class="game_music" >音乐游戏</li>
+        </ul>
+    </div>
+    <div class="game_word_container">
+            <form id = "form_word" method="POST" name="form"  enctype="multipart/form-data" action='javascript:;'>  
+              <input type="text" name="question" value="" class="form-control" placeholder="填写问题"/>
+              <input type="text" name="answer" value="" class="form-control" placeholder="填写文字答案"/>  
+            </form>       
+    </div>
+    <div class="game_piture_container">
+             <form id = "form_picture" method="POST" name="form"  enctype="multipart/form-data" action='javascript:;'>  
+                <a href="javascript:;" class="file" >选择文件
+                   <input type="file" name="question" value="" class="form-control" accept="image/jpg,image/gif,image/png" />
+                </a>
+              <input type="text" name="answer" value="" class="form-control" placeholder="填写图片游戏答案"/> 
+              <input type="text" name="info" value="" class="form-control" placeholder="填写图片游戏的说明"/> 
+              <span></span>
+            </form>
+    </div>
+    <div class="game_music_container">
+            <form id = "form_music" method="POST" name="form"  enctype="multipart/form-data" action='javascript:;'>  
+                <a href="javascript:;" class="file" >选择文件
+                   <input type="file" name="question" value="" class="form-control" accept="audio/ogg,audio/mp3" />
+                </a>
+              <input type="text" name="answer" value="" class="form-control" placeholder="填写音乐游戏答案"/> 
+              <input type="text" name="info" value="" class="form-control" placeholder="填写音乐游戏的说明"/>
+              <span></span>
+            </form>
+    </div>
+    <div class="btn_upload">
+        提交
+    </div>
+    <div class="loading_box">
+        <div class="loading_box_img">
+           <img src="stylesheets/upload.gif" alt="">
+        </div>
+        <div class="loading_box_msg">
+            <span>正在上传</span>
+        </div>
+    </div>
+</body>
+    <script>
+        $(function(){
+            $('.file input').change(function(){
+                var reg = /[^\\\/]*[\\\/]+/g; //取出文件名加后缀正则
+                var str = $(this).val().replace(reg,'');
+                $(this).parent('a').parent('form').children('span').html(str);
+            });
+            $('.container_admin li').click(function(){
+                $(this).addClass('li_current').siblings('li').removeClass('li_current')
+            });
+            $('.game_word').click(function(){
+                $('.game_piture_container').hide();
+                $('.game_music_container').hide();
+                $('.game_word_container').show();
+            });
+            $('.game_picture').click(function(){
+                $('.game_word_container').hide();
+                $('.game_music_container').hide();
+                $('.game_piture_container').show();
+            });
+            $('.game_music').click(function(){
+                $('.game_word_container').hide();
+                $('.game_piture_container').hide();
+                $('.game_music_container').show();
+            });
+            $('.btn_upload').click(function(){
+                $('.li_current').hasClass('game_word')&&SendForm('/addgame_word','#form_word');
+                $('.li_current').hasClass('game_picture')&&SendForm('/addgame_picture','#form_picture'); 
+                $('.li_current').hasClass('game_music')&&SendForm('/addgame_music','#form_music');
+              });
+            function SendForm(action,form_id){
+                $('.loading_box').show();
+                $('.loading_box_msg span').html('正在上传');
+                var formdata = new FormData($(form_id)[0]); 
+                $.ajax({
+                  url: action,
+                  type:'POST',
+                  data:formdata,
+                  cache: false,
+                  processData : false,
+                  contentType : false,
+                  statusCode:{
+                    200: function() {
+                      $('.loading_box_msg span').html('上传完成');
+                      $(form_id+" input").val("");//.removeAttr("checked").remove("selected");//核心
+                      $(form_id+" span").html("");
+                      $('.loading_box').hide('slow');
+                      // $(form_id+":reset");
+                    }
+                  },
+                  error: function(){
+                    console.log("与服务器通信发生错误");
+                 }
+                });
+            }
+              
+           });
+    </script>
+
+ </html>
